@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_bottom_nav/localizations/app_localizations.dart';
 import 'package:provider_bottom_nav/providers/app_provider.dart';
 import 'package:provider_bottom_nav/screens/profile_page.dart';
 
@@ -16,6 +17,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context);
+
     return Consumer<AppProvider>(
       builder: (context, appProvider, child) {
         return ListView(
@@ -75,6 +78,25 @@ class SettingsScreen extends StatelessWidget {
                 value: appProvider.isDarkMode,
                 onChanged: (value) {
                   appProvider.toggleDarkMode(value);
+                },
+              ),
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.language),
+              title: Text(lang.translate("language")),
+              trailing: DropdownButton(
+                items: [
+                  DropdownMenuItem(value: Locale('en'), child: Text("English")),
+                  DropdownMenuItem(
+                    value: Locale('id'),
+                    child: Text('Bahasa Indonesia'),
+                  ),
+                ],
+                onChanged: (Locale? newLocale) {
+                  if (newLocale != null) {
+                    appProvider.changeLanguage(newLocale);
+                  }
                 },
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:provider_bottom_nav/bottom_nav_bar.dart';
 import 'package:provider_bottom_nav/providers/app_provider.dart';
 import 'package:provider_bottom_nav/providers/counter_provider.dart';
@@ -28,6 +29,10 @@ class MyApp extends StatelessWidget {
     return Consumer<AppProvider>(
       builder: (context, appProvider, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          locale: appProvider.locale,
+          supportedLocales: [Locale('en', 'US'), Locale('id', 'ID')],
+          localizationsDelegates: [],
           theme: ThemeData(
             brightness:
                 appProvider.isDarkMode ? Brightness.dark : Brightness.light,
