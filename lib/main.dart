@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-
 import 'package:provider_bottom_nav/bottom_nav_bar.dart';
+import 'package:provider_bottom_nav/localizations/app_localizations.dart';
 import 'package:provider_bottom_nav/providers/app_provider.dart';
 import 'package:provider_bottom_nav/providers/counter_provider.dart';
 
@@ -32,7 +33,12 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           locale: appProvider.locale,
           supportedLocales: [Locale('en', 'US'), Locale('id', 'ID')],
-          localizationsDelegates: [],
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
           theme: ThemeData(
             brightness:
                 appProvider.isDarkMode ? Brightness.dark : Brightness.light,
